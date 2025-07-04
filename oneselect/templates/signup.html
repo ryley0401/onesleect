@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>會員註冊</title>
+        <link rel="icon" type=image/png href="{{ url_for('static', filename='img/titlelogo-bgwhite.png')}}">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <!--引用資料夾的CSS-->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <!--中文字型，都是在google font上面找的-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500&display=swap" rel="stylesheet">
+        <!--英文字型，都是在google font上面找的-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+        <!--font awesome css-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    </head>
+    <body>
+        <div class="register-container">
+            <h2>會員註冊</h2>
+            <form>
+                <label for="username">帳號:</label>
+                <input type="text" id="username" name="username" required>
+                <label for="password">密碼:</label>
+                <input type="password" id="password" name="password" required>
+                <label for="confirm-password">確認密碼:</label>
+                <input type="text" id="confirm-password" name="confirm-password" required>
+                <label for="email" id="email" name="email">信箱:</label>
+                <input type="text" id="email" name="email" required>
+                <label for="birthday">生日:</label>
+                <input type="date" id="birthday" name="birthday">
+                <label>性別:</label>
+                <select name="gender">
+                    <option value="">請選擇</option>
+                    <option value="male">男</option>
+                    <option value="female">女</option>
+                    <option value="other">其他</option>
+                </select>
+                <button type="submit" class="btn">註冊</button>
+            </form>
+            <a href="login" class="login-link">已有帳號?登入</a>
+        </div>
+
+
+
+
+
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 text-center">
+                        <h4>疑難排解</h4>
+                        <!-- 頁尾連結 -->
+                        <ul class="footer-links">
+                            <li><a href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFAQ">聯絡客服</a></li>
+                            <li><a href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNotice">購物須知</a></li>
+                            <li><a href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMember">會員請點我</a></li>
+                            <li><a href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasPrivacy">隱私權政策</a></li>
+                        </ul>
+                        <!-- FAQ Offcanvas -->
+                        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasFAQ" aria-labelledby="offcanvasFAQLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasFAQLabel">聯絡客服</h5>
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <p>
+                                如購買上有任何問題，您可透過下列任一方式聯絡我們。
+                                <br><a href="https://www.facebook.com/?locale=zh_TW" target="blank">Facebook粉絲團</a>
+                                <br><a href="https://www.instagram.com/">Instagram粉絲專頁</a>
+                            </p>
+                        </div>
+                        </div>
+                        <!-- 購物須知 Offcanvas -->
+                        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNotice" aria-labelledby="offcanvasNoticeLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasNoticeLabel">購物須知</h5>
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <p>
+                                商品寄送時間
+                                ※  出貨時間為週一至週五早上11點至晚上5點，
+                                如倉庫有現貨庫存,出貨日約為訂單成立的1-3個工作天
+                                部分商品如因倉庫缺貨須跟門市調貨時,出貨日約需7-10個工作天,敬請見諒
+                                若遇假日及國定休假則可能順延出貨，週五晚上的訂單會於週一上班日後寄出。<br> 
+                                國內運送
+                                <br>※  付款方式 :
+                                <br>1.【超商取貨付款】(外島地區不提供) :  7 - 11 便利商店
+                                <br>2.【宅配到府】: ATM轉帳、線上刷卡 (VISA , MASTERCARD , JCB)，貨到付款 (僅限台灣本島)
+                                <br>✽ 由於超商取貨體積限制45cm x 30cm x 30cm以內，如購買抱枕、安全帽、鞋子等佔體積商品將以宅配寄送。   
+                                <br>３. 【宅配到府貨到付款】: 需加收商品金額 1% 手續費。
+                                <br>※  運送方式 :
+                                <br>1. 超商運送 / 運費70  ( 貨到付款，搭配7-11便利商店，外島地區不提供) 
+                                <br>2. 宅配運送 / 台灣本島-運費100 (搭配新竹物流，可貨到付款) / 台灣離島-運費220 (搭配黑貓宅急便，需先付款完成)
+                                <br>✽ 全館滿 NT$2500免運 (限台灣本島地區) 
+                            </p>
+                        </div>
+                        </div>
+                        <!-- 會員 Offcanvas -->
+                        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasMember" aria-labelledby="offcanvasMemberLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasMemberLabel">會員專區</h5>
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <p>會員註冊及會員資格註銷
+                            <br>（一）您需註冊本網路商店之會員方能使用本網路商店之訂購服務。於您成功註冊本網路商店會員時，亦將同時成功註冊萬選物網路商店會員。
+                            <br>（二） 如您曾因違反本契約而被註銷會員資格、或申請註冊會員時含虛偽不實內容、或經本公司判斷不宜給予會員資格的情況時，將拒絕您的會員註冊申請，已完成註冊程序者，本公司並將註銷您的會員資格。又因萬選物網路商店會員帳號之註冊、停權、註銷或刪除等會員權益變動效果共通，任一平台之會員權益有前述情事時，另一方之會員權益亦將為相同之設定。
+                            <br>（三）如您有下列各款事由之一時，本公司將禁止您使用本網路商店之訂購服務或註銷您的會員資格:
+                            以虛偽不實內容申請註冊會員。
+                            有妨害本網路商店服務之行為，或有妨害之虞者(包括但不限於異常頻繁退貨)。
+                            於本網路商店違法使用信用卡進行交易。
+                            不當使用自己或他人之會員帳號、電子郵件或密碼之行為。
+                            基於轉售或其他不當之營利目的而於本網路商店進行訂購。
+                            侵害本公司、其他使用者或第三人之權益或有侵害之虞者。
+                            違反公序良俗或有違反之虞者。
+                            不當註冊並持有複數會員帳號者。
+                            其他經本公司判斷為不適當之行為者。
+                            <br>（四）本公司對於曾因本條第(二)項或第(三)項情形遭停權、拒絕或註銷之會員，將於註銷會員資格後，在顧客管理目的之範圍內，最小限度保留會員資料（如電話及電子郵件等），作為拒絕重新註冊為本網路商店會員之辨識資料。
+                            </p>
+                        </div>
+                        </div>
+                        <!-- 隱私權政策 Offcanvas -->
+                        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasPrivacy" aria-labelledby="offcanvasPrivacyLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasPrivacyLabel">隱私權政策</h5>
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <p>本公司致力於遵守保護個人資料的相關法令及本公司隱私保護政策，妥善管理和保護用戶的隱私權。
+                                本公司以合法公正的方法取得個人資料。
+                                本公司依照法律告知蒐集目的，除法律另有規定外，本公司僅在下述蒐集目的範圍内使用個人資料。
+                                本公司採取必要且適當的措施以安全管理取得之個人資料。
+                                除下述告知範圍或法律另有規定外，本公司不會將個人資料提供給第三人。
+                                本公司在接獲顧客本人提出個人資料的確認、修正、停止使用、刪除等相關要求時，將會依法妥適處理。
+                                若您的會員帳號密碼遭到冒用，請撥打客服專線或是經由客服信箱聯絡本公司，公司將依照您的請求處理您的帳號。（如停止使用或刪除等相關要求）
+                                另本公司應於知悉您帳號密碼被冒用時，立即暫停該帳號所生交易之處理及後續利用。
+                                本網站使用通行標準的TLS（傳輸層安全協定）保護系統，您的個人資訊傳輸受到加密以保障安全性。
+                                當您於本網站輸入個人資料完成活動參加程序或開始使用本服務時，
+                                即視為您已清楚瞭解並同意以下本公司蒐集、處理或利用您個人資料之目的及用途。</p>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-center" >
+                        <img src="{{ url_for('static', filename='img/logo-bgwhite.png')}}" alt="" width="150">
+                        <p>
+                            <i class="fa-solid fa-phone"></i> (+886) 0972920516<br>
+                            <i class="fa-solid fa-location-dot"></i> 110台北市信義區信義路五段7號<br>
+                            <i class="fa-solid fa-clock"></i> 02:00-10:00 p.m.<br>
+                            萬選物有限公司<br>
+                            <i class="fa-solid fa-receipt"></i> 統一編號：11223344<br>
+                            <i class="fa-solid fa-envelope"></i> E-Mail:<a href="mailto:worldpeace0401@gmail.com">worldpeace0401@gmail.com</a>
+                        </p>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <h4>OFFICIAL SNS</h4>
+                        <a><img src="{{ url_for('static', filename='img/icons8-facebook-48.png')}}"></a>
+                        <a><img src="{{ url_for('static', filename='img/icons8-instagram-48.png')}}"></a>
+                        <a><img src="{{url_for('static', filename='img/icons8-wechat-48.png')}}"></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script>
+            document.getElementById('newProductLink').addEventListener('click', function(event) {
+                event.preventDefault();
+                document.getElementById('popup').style.display = 'block';
+            });
+            document.getElementById('closePopup').addEventListener('click', function() {
+                document.getElementById('popup').style.display = 'none';
+            });
+        </script>
+    </body>
+</html>
