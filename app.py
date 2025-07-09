@@ -4,6 +4,7 @@ from flask import render_template
 from flask import redirect
 from flask import url_for
 from flask import request
+from flask import session
 import pymongo
 from pymongo.errors import ConnectionFailure, PyMongoError
 #加密
@@ -37,7 +38,7 @@ def root():
 def oneselect():
     return render_template("index.html")
 
-#登入頁面設定
+#註冊頁面設定
 @app.route("/signup", methods=["GET","POST"])
 def signup():
     if request.method == "POST":
@@ -76,6 +77,41 @@ def signup():
         flash("註冊成功，請登入")
         return redirect(url_for("login"))
     return render_template("signup.html")
+
+#登入頁面設定
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        #從前端取得使用者輸入的帳號，密碼
+        username = request.form.get("username")
+        password = request.form.get("password")
+        collection = db.users
+        user = collection.find_one({
+            "username" : username
+        })
+        if not user:
+            flash("帳號輸入錯誤，請重新輸入")
+            return render_template("login.html")
+        if not check_password_hash(user["password"], password):
+            flash("密碼輸入錯誤，請重新輸入")
+            return render_template("login.html")
+        
+        #登入若成功，儲存session
+        session["username"] = username
+        flash("登入成功")
+        #跳轉回首頁
+        return redirect(url_for("oneselect"))
+    #如果method不是POST，就導回登入頁面
+    return render_template("login.html")
+
+#登出會員
+@app.route("/logout")
+def logout():
+    session.pop("username", None)
+    flash("已成功登出")
+    return redirect(url_for("login"))
+
+
 
 
 
