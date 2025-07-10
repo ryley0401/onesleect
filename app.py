@@ -111,6 +111,59 @@ def logout():
     flash("已成功登出")
     return redirect(url_for("login"))
 
+#修改會員資料
+@app.route("/member")
+def member():
+    #先檢查session有沒有紀錄資料，沒有就代表沒有登入render_template到登入頁面
+    if "username" not in session:
+        flash("請先登入")
+        return render_template("login.html")
+    
+    #登入資料庫
+    collection = db.users
+    user = collection.find_one({
+        "username" : session["username"]
+    })
+    #如果登入請求是post
+    if request.method == "POST":
+        email = request.form.get("email")
+        birthday = request.form.get("birthday", "")
+        gender = request.form.get("gender", "")
+        old_password = request.form.get("old_password")
+        new_password = request.form.get("password")
+
+        #email檢查，不可與其他使用者重複
+        if email != user["email"] and collection.find_one({"email" : email}):
+            flash("此信箱已被使用，請重新輸入")
+            return render_template("member.html", user = user)
+        
+        #更新資料
+        update_data = {
+            "email": email,
+            "birthday": birthday,
+            "gender": gender
+        }
+
+        #密碼變更
+        if new_password:
+            #如果沒有填寫舊密碼欄位
+            if not old_password:
+                flash("請先填寫舊密碼以修改新密碼")
+                return render_template("member.html", user = user)
+            #如果舊密碼與資料庫不符
+            if not check_password_hash(user["password"], old_password):
+                flash("舊密碼輸入錯誤，請重新輸入")
+                return render_template("member.html", user = user)
+            update_data["password"] = generate_password_hash(new_password)
+
+        collection.update_one({
+            "username" : session["username"]
+        },{
+            "$set" : update_data
+        })
+        flash("資料已成功更新")
+        user = collection.find_one({"username" : session["username"]})
+    return render_template("member.html", user = user)
 
 
 
