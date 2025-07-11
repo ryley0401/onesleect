@@ -48,6 +48,7 @@ def signup():
         email = request.form.get("email")
         birthday = request.form.get("birthday", "")
         gender = request.form.get("gender", "")
+        role = request.form.get("role", "user")
         #基本欄位檢查
         if not username or not password or not confirm_password or not email:
             flash("請填寫所有必填欄位")
@@ -71,7 +72,8 @@ def signup():
             'password' : hashed_password,
             'email' : email,
             'birthday' : birthday,
-            'gender' : gender
+            'gender' : gender,
+            'role': role
         }
         collection.insert_one(user_data)
         flash("註冊成功，請登入")
@@ -98,6 +100,7 @@ def login():
         
         #登入若成功，儲存session
         session["username"] = username
+        session["role"] = user["role"]
         flash("登入成功")
         #跳轉回首頁
         return redirect(url_for("oneselect"))
@@ -108,11 +111,12 @@ def login():
 @app.route("/logout")
 def logout():
     session.pop("username", None)
+    session.pop("role", None)
     flash("已成功登出")
     return redirect(url_for("login"))
 
 #修改會員資料
-@app.route("/member")
+@app.route("/member", methods=["GET", "POST"])
 def member():
     #先檢查session有沒有紀錄資料，沒有就代表沒有登入render_template到登入頁面
     if "username" not in session:
