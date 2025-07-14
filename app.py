@@ -6,14 +6,19 @@ from flask import url_for
 from flask import request
 from flask import session
 import pymongo
+import os
+from dotenv import load_dotenv
 from pymongo.errors import ConnectionFailure, PyMongoError
 #加密
 from werkzeug.security import generate_password_hash, check_password_hash
 
+# 載入 .env 檔案
+load_dotenv()
 
 #初始化資料庫連線
 try:
-    client = pymongo.MongoClient("mongodb+srv://ryley0401:admin@oneselect.mrsaxx1.mongodb.net/")
+    mongo_uri = os.environ.get("MONGODB_URI")
+    client = pymongo.MongoClient(mongo_uri)
     client.admin.command('ping')
     db = client.member_system
     print("資料庫連線成功")

@@ -111,6 +111,11 @@ Jumbotron / 首頁大圖區塊
     margin-top: 20px;
 }
 
+#intro {
+    background: linear-gradient(45deg, rgba(233, 233, 233, 0.9), transparent), url('/static/img/horizontal.png') no-repeat center;
+    background-size: cover;
+}
+
 /*------------------------------
 產品區塊 #second
 ------------------------------*/
